@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "title": "Gå i kveldens middag?",
+    "footer": "Veiviser om du bør møte opp for kveldens middag"
+  },
+  "schema": [
+    {
+      "id": "employer",
+      "type": "Page",
+      "heading": "Arbeidssted",
+      "children": [
+        {
+          "id": "dibkEmployee",
+          "property": "dibkEmployee",
+          "type": "Radio",
+          "heading": "Jobber du i DiBK?",
+          "options": [
+            {
+              "id": "dibkEmployee.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "dibkEmployee.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prizePerson",
+      "type": "Page",
+      "heading": "Prisutdeler",
+      "show": { "field": "dibkEmployee", "operator": "eq", "value": false },
+      "children": [
+        {
+          "id": "digitalizationAward",
+          "property": "digitalizationAward",
+          "type": "Radio",
+          "heading": "Deler du ut neste års digitaliseringspris?",
+          "options": [
+            {
+              "id": "digitalizationAward.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "digitalizationAward.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "applyForJob",
+          "type": "Group",
+          "heading": "Søk jobb i DiBK",
+          "show": { "field": "digitalizationAward", "operator": "eq", "value": false },
+          "children": [
+            {
+              "id": "applyForJobText",
+              "property": "applyForJobText",
+              "type": "Text",
+              "text": "...og ta på deg spanderbuksene 😉"
+            }
+          ]
+        },
+        {
+          "id": "resultDinner",
+          "type": "Result",
+          "heading": "Gå i kveldens middag!"
+        }
+      ]
+    },
+    {
+      "id": "eveningGoal",
+      "type": "Page",
+      "heading": "Mål for kvelden",
+      "show": { "field": "dibkEmployee", "operator": "eq", "value": true },
+      "children": [
+        {
+          "id": "likeAColleague",
+          "property": "likeAColleague",
+          "type": "Radio",
+          "heading": "Har du et godt øye til en kollega?",
+          "options": [
+            {
+              "id": "likeAColleague.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "likeAColleague.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "tafse",
+          "property": "tafse",
+          "type": "Radio",
+          "heading": "Har du lyst til å tafse på denne kollegaen?",
+          "show": { "field": "likeAColleague", "operator": "eq", "value": true },
+          "options": [
+            {
+              "id": "tafse.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "tafse.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "gjensidigTafsing",
+          "property": "gjensidigTafsing",
+          "type": "Radio",
+          "heading": "Har denne kollegaen lyst til å bli tafset på av deg?",
+          "show": { "field": "tafse", "operator": "eq", "value": true },
+          "options": [
+            {
+              "id": "gjensidigTafsing.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "gjensidigTafsing.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "resultGjensidig",
+          "type": "Result",
+          "heading": "👪 Bra!",
+          "lead": "Vi antar at det kan komme et DiBK-barn som kan delta i film neste år",
+          "show": {
+            "type": "and",
+            "clauses": [
+              { "field": "tafse", "operator": "eq", "value": true },
+              { "field": "gjensidigTafsing", "operator": "eq", "value": true }
+            ]
+          }
+        },
+        {
+          "id": "resultIkkeGjensidig",
+          "type": "Result",
+          "heading": "Ikke noe problem!",
+          "lead": "Gå til middagen! Du kan sitte ved siden av Per-Arne.",
+          "show": {
+            "type": "and",
+            "clauses": [
+              { "field": "tafse", "operator": "eq", "value": true },
+              { "field": "gjensidigTafsing", "operator": "eq", "value": false }
+            ]
+          }
+        },
+        {
+          "id": "likeFreeFood",
+          "property": "likeFreeFood",
+          "type": "Radio",
+          "heading": "Liker du gratis mat?",
+          "show": { 
+            "type": "or",
+            "clauses": [
+              { "field": "likeAColleague", "operator": "eq", "value": false },
+              { "field": "tafse", "operator": "eq", "value": false }
+            ]
+          },
+          "options": [
+            {
+              "id": "likeFreeFood.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "likeFreeFood.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "likeFreeFood.error",
+          "type": "Error",
+          "show": { "field": "likeFreeFood", "operator": "eq", "value": false },
+          "children": [
+            {
+              "id": "likeFreeFood.no.msg",
+              "type": "Text",
+              "warning": true,
+              "heading": "Skjerp deg!",
+              "text": "<p>Alle liker gratis mat</p>"
+            }
+          ]
+        },
+        {
+          "id": "hungry",
+          "property": "hungry",
+          "type": "Radio",
+          "heading": "Er du sulten?",
+          "show": { "field": "likeFreeFood", "operator": "required" },
+          "options": [
+            {
+              "id": "hungry.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "hungry.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "duBlirSulten",
+          "type": "Group",
+          "heading": "Ingen fare",
+          "show": { "field": "hungry", "operator": "eq", "value": false },
+          "children": [
+            {
+              "id": "duBlirSultenText",
+              "property": "duBlirSultenText",
+              "type": "Text",
+              "text": "...du blir sulten i tide"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tollRoad",
+      "type": "Page",
+      "heading": "Bompenger",
+      "show": { "field": "hungry", "operator": "required" },
+      "children": [
+        {
+          "id": "tollOnTheWay",
+          "property": "tollOnTheWay",
+          "type": "Radio",
+          "heading": "Er det en bomstasjon på veien?",
+          "options": [
+            {
+              "id": "tollOnTheWay.yes",
+              "type": "Answer",
+              "heading": "Ja",
+              "value": true
+            },
+            {
+              "id": "tollOnTheWay.no",
+              "type": "Answer",
+              "heading": "Nei",
+              "value": false
+            }
+          ]
+        },
+        {
+          "id": "walkAndVote",
+          "type": "Group",
+          "heading": "Bruk stemmeretten",
+          "show": { "field": "tollOnTheWay", "operator": "eq", "value": true },
+          "children": [
+            {
+              "id": "walkAndVoteText",
+              "property": "walkAndVoteText",
+              "type": "Text",
+              "text": "Stem på bompengepartiet og ta beina fatt!"
+            }
+          ]
+        },
+        {
+          "type": "Reference",
+          "nodeId": "resultDinner",
+          "show": { "field": "tollOnTheWay", "operator": "required" }
+        }
+      ]
+    }
+  ]
+}
