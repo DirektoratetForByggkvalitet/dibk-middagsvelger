@@ -163,7 +163,7 @@
           "id": "resultIkkeGjensidig",
           "type": "Result",
           "heading": "Ikke noe problem!",
-          "lead": "Gå til middagen! Du kan sitte ved siden av Per-Arne.",
+          "lead": "<p>Gå til middagen! Du kan sitte ved siden av Per-Arne.</p><img src=\"https://i.imgflip.com/33fz6r.jpg\" alt=\"Per-Arne Horne\" />",
           "show": {
             "type": "and",
             "clauses": [
