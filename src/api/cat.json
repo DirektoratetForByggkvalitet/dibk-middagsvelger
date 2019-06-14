@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Gå i kveldens middag?",
+    "title": "Gå i kveldens middag? 🍜",
     "footer": "Veiviser om du bør møte opp for kveldens middag"
   },
   "schema": [
@@ -89,6 +89,7 @@
           "property": "likeAColleague",
           "type": "Radio",
           "heading": "Har du et godt øye til en kollega?",
+          "text": "<img src=\"https://i.giphy.com/media/f9kW1Dj2WWeMJ8zFmZ/source.gif\" alt=\"sjekke-gif\" />",
           "options": [
             {
               "id": "likeAColleague.yes",
@@ -177,6 +178,7 @@
           "property": "likeFreeFood",
           "type": "Radio",
           "heading": "Liker du gratis mat?",
+          "text": "<img src=\"https://media.giphy.com/media/gGjpxXSc6Dyx64jdsE/source.gif\" alt=\"gratis mat\" />",
           "show": { 
             "type": "or",
             "clauses": [
